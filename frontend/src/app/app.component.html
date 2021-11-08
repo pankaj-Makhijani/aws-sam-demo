@@ -1,0 +1,28 @@
+<div>  
+  <h1>Create Book</h1>
+  <form #createBook="ngForm" (ngSubmit)="onCreateBook(createBook.value)">
+    <label>
+      Name: 
+      <input type="text" name="title" [(ngModel)]="booktitle">
+    </label>
+    <input type="submit" value="Create Book">
+  </form>
+</div>
+<div>
+  <h1>Get Books</h1>
+  <input type="submit" value="Get Books" (click)="onGetBooks()">
+  <table *ngIf="books" border="1">
+    <tr>
+      <td>Book title</td>
+      <td>Update Book</td>
+      <td>Delete Book</td>
+    </tr>
+    <tr *ngFor="let book of books">
+      <td><input type="text" value="{{book.title}}" #UpdatedItem></td>
+      <td><input type="submit" value="Update Item" (click)="onUpdateItem(book.id,UpdatedItem)"></td>
+      <td><input type="submit" value="Delete Item" (click)="onDeleteItem(book.id)"></td>
+    </tr>
+  </table>
+</div>
+
+<p>{{message}}</p>
