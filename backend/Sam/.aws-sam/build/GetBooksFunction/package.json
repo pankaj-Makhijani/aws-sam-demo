@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@middy/core": "^2.5.3",
+    "@middy/http-json-body-parser": "^2.5.3",
     "aws-sdk": "^2.1016.0",
     "body-parser": "^1.19.0",
     "crypto": "^1.0.1",

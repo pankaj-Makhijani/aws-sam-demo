@@ -16,12 +16,14 @@ export class AppComponent {
   constructor(private http:HttpClient){}
   onCreateBook(createBook:any){
     //  console.log(createBook);
-     createBook.title=this.booktitle
+     createBook.title=this.booktitle;
+    //  createBook = JSON.stringify({"title": this.booktitle})
      console.log(createBook)
+     console.log(typeof createBook)
      var reqHeader = new HttpHeaders({ 
       'Content-Type': 'application/json',
    });
-     this.http.post(`https://kz67v3rk25.execute-api.us-east-1.amazonaws.com/Prod/books`,{Headers: reqHeader}, createBook)
+     this.http.post(`https://kz67v3rk25.execute-api.us-east-1.amazonaws.com/Prod/books`, createBook)
       .subscribe(res=>{
         this.message="book created successfully";
       },(err)=>{
@@ -33,14 +35,14 @@ export class AppComponent {
     console.log(Id)
     console.log(Item.value)
     this.book = {
-      "id": Id,
-      "title": Item.value
+      id: Id,
+      title: Item.value
     }
     console.log(this.book)
     var reqHeader = new HttpHeaders({ 
      'Content-Type': 'application/json',
   });
-    this.http.put(`https://kz67v3rk25.execute-api.us-east-1.amazonaws.com/Prod/books`,{Headers: reqHeader}, this.book)
+    this.http.put(`https://kz67v3rk25.execute-api.us-east-1.amazonaws.com/Prod/books`, this.book)
      .subscribe(res=>{
        this.message="Book Updated Successfully";
      },(err)=>{
@@ -48,9 +50,11 @@ export class AppComponent {
    })
   }
 
-  async onDeleteItem(Id:any){
+  onDeleteItem(Id:any){
     console.log(Id)
-    this.book = `{id: ${Id}}`
+    this.book = {
+      id: Id
+    }
     console.log(this.book)
     var reqHeader = new HttpHeaders({ 
      'Content-Type': 'application/json',
@@ -59,7 +63,7 @@ export class AppComponent {
      .subscribe(res=>{
        this.message="book deleted successfully";
      },(err)=>{
-       this.message=JSON.stringify(err.message);
+       this.message=JSON.stringify(err);
    })
   }
 

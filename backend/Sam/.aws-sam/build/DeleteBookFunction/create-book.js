@@ -1,6 +1,8 @@
 const AWS = require("aws-sdk");
 const crypto = require("crypto");
 var jwt = require('jsonwebtoken');
+const httpJsonBodyParser = require('@middy/http-json-body-parser')
+const bodyParser=require('body-parser');
 // Generate unique id with no external dependencies
 const generateUUID = () => crypto.randomBytes(16).toString("hex");
 
@@ -14,6 +16,8 @@ const signToken = id => {
 };
 
 exports.handler = async event => {
+  httpJsonBodyParser();
+  console.log(event)
   const { title } = JSON.parse(event.body);
   const params = {
     TableName: "books", // The name of your DynamoDB table
@@ -30,7 +34,9 @@ exports.handler = async event => {
       statusCode: 200,
       headers: { 
         "Access-Control-Allow-Origin" : "*",
-        "Set-Cookie": token 
+        "Access-Control-Allow-Credentials": true,
+        "Set-Cookie": `jwt = ${token}; expires = new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+        ); SameSite=none`
       },
       // "headers": { "Set-Cookie": params.Item.id },
       body: JSON.stringify(data)
