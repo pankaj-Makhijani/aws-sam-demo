@@ -23,7 +23,7 @@ export class AppComponent {
      var reqHeader = new HttpHeaders({ 
       'Content-Type': 'application/json',
    });
-     this.http.post(`https://kz67v3rk25.execute-api.us-east-1.amazonaws.com/Prod/books`, createBook)
+     this.http.post(`https://38krqssli8.execute-api.us-east-1.amazonaws.com/Prod/books`, createBook)
       .subscribe(res=>{
         this.message="book created successfully";
       },(err)=>{
@@ -42,7 +42,7 @@ export class AppComponent {
     var reqHeader = new HttpHeaders({ 
      'Content-Type': 'application/json',
   });
-    this.http.put(`https://kz67v3rk25.execute-api.us-east-1.amazonaws.com/Prod/books`, this.book)
+    this.http.put(`https://38krqssli8.execute-api.us-east-1.amazonaws.com/Prod/books`, this.book)
      .subscribe(res=>{
        this.message="Book Updated Successfully";
      },(err)=>{
@@ -59,7 +59,7 @@ export class AppComponent {
     var reqHeader = new HttpHeaders({ 
      'Content-Type': 'application/json',
   });
-    this.http.delete(`https://kz67v3rk25.execute-api.us-east-1.amazonaws.com/Prod/books`, this.book)
+    this.http.delete(`https://38krqssli8.execute-api.us-east-1.amazonaws.com/Prod/books?id=${Id}`, this.book)
      .subscribe(res=>{
        this.message="book deleted successfully";
      },(err)=>{
@@ -68,7 +68,7 @@ export class AppComponent {
   }
 
   onGetBooks(){ 
-    this.http.get(`https://kz67v3rk25.execute-api.us-east-1.amazonaws.com/Prod/books`)
+    this.http.get(`https://38krqssli8.execute-api.us-east-1.amazonaws.com/Prod/books`)
      .subscribe(res=>{
        this.books=res
      },(err)=>{

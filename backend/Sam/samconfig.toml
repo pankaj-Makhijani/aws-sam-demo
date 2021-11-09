@@ -3,7 +3,7 @@ version = 0.1
 [default.deploy]
 [default.deploy.parameters]
 stack_name = "book-demo"
-s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-ks8uaih9mpko"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-ppqsvk49ich5"
 s3_prefix = "book-demo"
 region = "us-east-1"
 confirm_changeset = true

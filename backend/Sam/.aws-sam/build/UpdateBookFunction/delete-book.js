@@ -15,7 +15,8 @@ const documentClient = new AWS.DynamoDB.DocumentClient();
 // };
 
 exports.handler = async event => {
-  const id = event.pathParameters.id;
+  const id = event.queryStringParameters.id;
+  
   console.log(event)
   const params = {
     TableName: "books", // The name of your DynamoDB table
